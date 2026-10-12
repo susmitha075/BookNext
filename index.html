@@ -1,0 +1,194 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BookNest | Online Bookstore</title>
+    <meta name="description" content="Discover books, build your wishlist, and shop your next favorite read.">
+    <link rel="stylesheet" href="style.css">
+    <script src="script.js" defer></script>
+</head>
+<body>
+    <header class="header">
+        <a class="brand" href="#" aria-label="BookNest home">Book<span>Nest</span></a>
+
+        <div class="search-box">
+            <input id="searchInput" type="search"
+                   placeholder="Search books or authors..."
+                   aria-label="Search books">
+            <button id="searchBtn" type="button">Search</button>
+        </div>
+
+        <nav class="nav-actions">
+            <button id="wishlistBtn" type="button">
+                ♡ Wishlist <span id="wishlistCount">0</span>
+            </button>
+            <button id="cartBtn" type="button">
+                🛒 Cart <span id="cartCount">0</span>
+            </button>
+        </nav>
+    </header>
+
+    <main>
+        <section class="hero">
+            <div>
+                <p class="eyebrow">YOUR NEXT CHAPTER STARTS HERE</p>
+                <h1>Find your next<br><span>favorite book.</span></h1>
+                <p>Explore inspiring stories, timeless classics, and ideas
+                   that stay with you long after the last page.</p>
+                <a href="#catalog" class="hero-link">Explore Books ↓</a>
+            </div>
+            <div class="hero-art" aria-hidden="true">
+                <div class="book-stack book-one">READ<br>MORE</div>
+                <div class="book-stack book-two">DREAM<br>BIG</div>
+                <div class="book-stack book-three">YOUR<br>STORY</div>
+            </div>
+        </section>
+
+        <section class="benefits">
+            <div>📚 <span>Books for every reader</span></div>
+            <div>💝 <span>Save your favorites</span></div>
+            <div>🚚 <span>Demo delivery checkout</span></div>
+        </section>
+
+        <section class="catalog section" id="catalog">
+            <div class="section-title">
+                <div>
+                    <p class="eyebrow">THE BOOKSHELF</p>
+                    <h2>Explore our books</h2>
+                </div>
+                <label class="filter-label">
+                    Category
+                    <select id="categoryFilter">
+                        <option value="All">All Books</option>
+                        <option value="Fiction">Fiction</option>
+                        <option value="Self-Help">Self-Help</option>
+                        <option value="Technology">Technology</option>
+                        <option value="Business">Business</option>
+                        <option value="Mystery">Mystery</option>
+                    </select>
+                </label>
+            </div>
+
+            <p id="resultsInfo" class="results-info"></p>
+            <div id="bookGrid" class="book-grid"></div>
+        </section>
+
+        <section class="shopping section" id="shopping">
+            <div class="shopping-panel" id="wishlistPanel">
+                <div class="panel-heading">
+                    <div>
+                        <p class="eyebrow">SAVED FOR LATER</p>
+                        <h2>My Wishlist <span id="wishlistPanelCount">(0)</span></h2>
+                    </div>
+                    <button class="text-button" id="closeWishlist" type="button">Close ✕</button>
+                </div>
+                <div id="wishlistItems" class="line-items"></div>
+            </div>
+
+            <div class="shopping-panel" id="cartPanel">
+                <div class="panel-heading">
+                    <div>
+                        <p class="eyebrow">READY TO READ?</p>
+                        <h2>My Shopping Cart <span id="cartPanelCount">(0)</span></h2>
+                    </div>
+                    <button class="text-button" id="closeCart" type="button">Close ✕</button>
+                </div>
+                <div id="cartItems" class="line-items"></div>
+                <div class="cart-summary">
+                    <p>Subtotal <strong id="cartSubtotal">₹0.00</strong></p>
+                    <p>Delivery <strong id="deliveryCost">₹0.00</strong></p>
+                    <p class="grand-total">Total <strong id="cartTotal">₹0.00</strong></p>
+                    <button id="checkoutBtn" class="button primary full-width" type="button">
+                        Proceed to Checkout
+                    </button>
+                </div>
+            </div>
+        </section>
+
+        <section class="checkout section" id="checkoutSection" hidden>
+            <div class="section-title">
+                <div>
+                    <p class="eyebrow">ALMOST YOURS</p>
+                    <h2>Customer Checkout</h2>
+                    <p class="muted">Enter your details to place a demo order.</p>
+                </div>
+            </div>
+
+            <div class="checkout-layout">
+                <form id="checkoutForm" class="checkout-form">
+                    <h3>Delivery details</h3>
+
+                    <label for="customerName">Full name</label>
+                    <input id="customerName" name="customerName"
+                           autocomplete="name" required maxlength="100">
+
+                    <label for="customerEmail">Email address</label>
+                    <input id="customerEmail" name="customerEmail"
+                           type="email" autocomplete="email" required>
+
+                    <label for="customerPhone">Phone number</label>
+                    <input id="customerPhone" name="customerPhone"
+                           type="tel" autocomplete="tel"
+                           pattern="[0-9 +()-]{10,20}" required>
+
+                    <label for="customerAddress">Delivery address</label>
+                    <textarea id="customerAddress" name="customerAddress"
+                              autocomplete="street-address"
+                              rows="3" maxlength="300" required></textarea>
+
+                    <label for="customerCity">City</label>
+                    <input id="customerCity" name="customerCity"
+                           autocomplete="address-level2" required>
+
+                    <label for="paymentMethod">Demo payment method</label>
+                    <select id="paymentMethod" name="paymentMethod" required>
+                        <option value="Cash on Delivery">Cash on Delivery (demo)</option>
+                        <option value="UPI demo">UPI (simulation only)</option>
+                    </select>
+
+                    <p class="notice">
+                        This is a demonstration checkout. No real payment is
+                        processed, and this page does not send orders to a server.
+                    </p>
+
+                    <button class="button primary full-width" type="submit">
+                        Place Demo Order
+                    </button>
+                </form>
+
+                <aside class="checkout-summary">
+                    <h3>Order summary</h3>
+                    <div id="checkoutItems"></div>
+                    <hr>
+                    <p>Subtotal <strong id="checkoutSubtotal">₹0.00</strong></p>
+                    <p>Delivery <strong id="checkoutDelivery">₹0.00</strong></p>
+                    <p class="grand-total">Total <strong id="checkoutTotal">₹0.00</strong></p>
+                </aside>
+            </div>
+        </section>
+
+        <section class="confirmation section" id="confirmationSection" hidden>
+            <div class="confirmation-card">
+                <div class="success-icon">✓</div>
+                <p class="eyebrow">ORDER CREATED</p>
+                <h2>Thank you for shopping!</h2>
+                <p id="confirmationMessage"></p>
+                <p class="notice">Demo only: this is not a real purchase confirmation.</p>
+                <button class="button primary" id="continueShopping" type="button">
+                    Continue Shopping
+                </button>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <a class="brand" href="#">Book<span>Nest</span></a>
+        <p>A little more reading. A little more wonder.</p>
+        <p>© <span id="currentYear"></span> BookNest · Student project demo</p>
+    </footer>
+
+    <div id="toast" class="toast" role="status" aria-live="polite"></div>
+</body>
+</html>
